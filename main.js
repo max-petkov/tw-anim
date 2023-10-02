@@ -2,6 +2,7 @@ showDialogues();
 
 function showDialogues() {
     const container = document.querySelectorAll(".chats__container");
+    const gradient = document.querySelector(".circle");
 
     const topChat = document.querySelector(".chat[data-chat='1']");
     const middleChat = document.querySelector(".chat[data-chat='2']");
@@ -34,23 +35,32 @@ function showDialogues() {
     }, {
         autoAlpha: 1, 
         onComplete: () => tl.pause(),
-        onStart: () => startTypeWriter(tl,{dialogue: dialogueOne, chat: topChat, speed: 17, pause: 300 }), 
-       }, "<")
+        onStart: () => {
+            startTypeWriter(tl,{dialogue: dialogueOne, chat: topChat, speed: 17, pause: 300 });
+            gsap.to(gradient, {right: "110%", top: "75%", duration: 1.2, ease: Power2.easeInOut});
+        }
+    }, "<")
     .fromTo(container, {y: "20%"}, {y: "10%"})
     .fromTo(middleChat, {
         autoAlpha: 0
     }, {
         autoAlpha: 1, 
         onComplete: () => tl.pause(),
-        onStart: () => startTypeWriter(tl,{dialogue: dialogueTwo, chat: middleChat, speed: 10, pause: 350 })
-       }, "<")
+        onStart: () => {
+            startTypeWriter(tl,{dialogue: dialogueTwo, chat: middleChat, speed: 10, pause: 350 });
+            gsap.to(gradient, {right: "85%", top: "115%", duration: 1.2, ease: Power2.easeInOut});
+        }
+    }, "<")
     .fromTo(container, { y: "10%", }, {y: "0",})
     .fromTo(bottomChat, {
         autoAlpha: 0
     }, {
         autoAlpha: 1, 
         onComplete: () => tl.pause(),
-        onStart: () => startTypeWriter(tl,{dialogue: dialogueThree, chat: bottomChat, speed: 17, pause: 350 })
+        onStart: () => {
+            startTypeWriter(tl,{dialogue: dialogueThree, chat: bottomChat, speed: 17, pause: 350 });
+            gsap.to(gradient, {right: "100%", top: "100%", duration: 1.2, ease: Power2.easeInOut});
+        }
        }, "<")
     .fromTo(container, {
         transformOrigin: "center", 
